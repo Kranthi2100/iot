@@ -24,3 +24,7 @@ def update_token(id, token):
 
 def get_user_details(id):
   return user_db.find_one({'id': id})
+
+
+def delete_user_details(id):
+  user_db.delete_one({'id':id})

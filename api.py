@@ -1,7 +1,7 @@
 import requests
 import os
 import json
-from mongo import get_user_details, update_token
+from mongo import get_user_details, update_token, delete_user_details
 from datetime import datetime
 from datetime import timedelta
 
@@ -143,3 +143,16 @@ def get_profile_info(access_token=None, id=None):
 
   r = requests.get('https://api.amazon.com/user/profile', headers=headers)
   return json.loads(r.text)
+
+def delete_user(id):
+  access_token = get_access_token(id)
+  headers = {
+    'Authorization': 'Bearer {}'.format(access_token),
+    'x-amzn-accept-type': 'com.amazon.dash.replenishment.DrsDeregisterResult@1.0',
+    'x-amzn-type-version': 'com.amazon.dash.replenishment.DrsDeregisterInput@2.0'
+  }
+  r = requests.delete(DRS_BASE_URI + '/registration', headers = headers)
+  if(r.status_code is 200):
+    delete_user_details(id)
+  return r.text
+

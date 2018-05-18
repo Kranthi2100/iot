@@ -1,6 +1,6 @@
 register new users here:
   https://iot2100.herokuapp.com/auth/login
-  
+
 replenish: GET
   https://iot2100.herokuapp.com/replenish/{user_id}/{slot_id}
   https://iot2100.herokuapp.com/replenish/1/490d109f-23a8-476a-8f8d-0814cc3799ef

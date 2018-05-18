@@ -11,7 +11,8 @@ from api import (generate_token,
           create_new_order,
           get_order_info,
           delete_order,
-          delete_order_all
+          delete_order_all,
+          delete_user
           )
 from mongo import add_user
 
@@ -84,6 +85,10 @@ def dashboard():
 @app.route('/<int:user_id>')
 def dashboard_generic(user_id):
   return render_template('dashboard.html', user_id = user_id)
+
+@app.route('/deregister/<int:user_id>')
+def deregister(user_id):
+  return delete_user(user_id)
 
 
 if __name__ == "__main__":
